@@ -1,4 +1,4 @@
-package com.example.bikeassistant
+package com.example.bikeassistant.ui.bikestations
 
 import android.os.Bundle
 import android.os.Handler
@@ -8,17 +8,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.bikeassistant.data.BikeStation
+import com.example.bikeassistant.R
+import com.example.bikeassistant.ui.BikeStationsAdapter
 import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
 import kotlinx.android.synthetic.main.fragment_bike_stations.*
 import okhttp3.*
 import timber.log.Timber
 import java.io.IOException
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.

@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <item
+        android:id="@+id/bikeStationsFragment"
+        android:title="Bike Stations" />
+    <item
+        android:id="@+id/mapsFragment"
+        android:title="Map" />
     <item android:title="Weather" />
 </menu>

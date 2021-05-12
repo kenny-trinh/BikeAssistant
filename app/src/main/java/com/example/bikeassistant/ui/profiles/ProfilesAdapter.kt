@@ -1,9 +1,11 @@
-package com.example.bikeassistant
+package com.example.bikeassistant.ui
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.bikeassistant.data.Profile
+import com.example.bikeassistant.R
 import kotlinx.android.synthetic.main.profile_row.view.*
 
 class ProfilesAdapter(val profiles: ArrayList<Profile>) : RecyclerView.Adapter<ProfilesViewHolder>() {

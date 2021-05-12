@@ -1,14 +1,13 @@
-package com.example.bikeassistant
+package com.example.bikeassistant.ui.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
+import com.example.bikeassistant.R
 import com.example.bikeassistant.databinding.ActivityMainBinding
-import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -17,7 +16,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
+        val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this,
+            R.layout.activity_main
+        )
         drawerLayout = binding.drawerLayout
 
         val navController = this.findNavController(R.id.myNavHostFragment)

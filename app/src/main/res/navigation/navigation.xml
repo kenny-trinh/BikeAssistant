@@ -3,41 +3,41 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/bikeStationsFragment">
+    app:startDestination="@id/mapsFragment">
 
     <fragment
         android:id="@+id/userRegistrationFragment"
-        android:name="com.example.bikeassistant.UserRegistrationFragment"
+        android:name="com.example.bikeassistant.ui.profiles.UserRegistrationFragment"
         android:label="fragment_user_registration"
         tools:layout="@layout/fragment_user_registration" />
     <fragment
         android:id="@+id/bikeStationsFragment"
-        android:name="com.example.bikeassistant.BikeStationsFragment"
+        android:name="com.example.bikeassistant.ui.bikestations.BikeStationsFragment"
         android:label="fragment_bike_stations"
         tools:layout="@layout/fragment_bike_stations" />
     <fragment
         android:id="@+id/profilesFragment"
-        android:name="com.example.bikeassistant.ProfilesFragment"
+        android:name="com.example.bikeassistant.ui.profiles.ProfilesFragment"
         android:label="fragment_profiles"
         tools:layout="@layout/fragment_profiles" />
     <fragment
         android:id="@+id/bikeStationDetailFragment"
-        android:name="com.example.bikeassistant.BikeStationDetailFragment"
+        android:name="com.example.bikeassistant.ui.bikestations.BikeStationDetailFragment"
         android:label="fragment_bike_station_detail"
         tools:layout="@layout/fragment_bike_station_detail" />
     <fragment
         android:id="@+id/profileDetailFragment"
-        android:name="com.example.bikeassistant.ProfileDetailFragment"
+        android:name="com.example.bikeassistant.ui.profiles.ProfileDetailFragment"
         android:label="fragment_profile_detail"
         tools:layout="@layout/fragment_profile_detail" />
     <fragment
         android:id="@+id/weatherFragment"
-        android:name="com.example.bikeassistant.WeatherFragment"
+        android:name="com.example.bikeassistant.ui.weather.WeatherFragment"
         android:label="fragment_weather"
         tools:layout="@layout/fragment_weather" />
     <fragment
         android:id="@+id/mapsFragment"
-        android:name="com.example.bikeassistant.MapsFragment"
+        android:name="com.example.bikeassistant.ui.maps.MapsFragment"
         android:label="fragment_maps"
         tools:layout="@layout/fragment_maps" />
 </navigation>
