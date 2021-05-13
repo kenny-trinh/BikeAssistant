@@ -8,9 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.bikeassistant.data.BikeStation
 import com.example.bikeassistant.R
-import com.example.bikeassistant.ui.BikeStationsAdapter
+import com.example.bikeassistant.data.Contract
 import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
 import kotlinx.android.synthetic.main.fragment_bike_stations.*
@@ -18,14 +17,9 @@ import okhttp3.*
 import timber.log.Timber
 import java.io.IOException
 
-/**
- * A simple [Fragment] subclass.
- * Use the [BikeStationsFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class BikeStationsFragment : Fragment() {
 
-    var bikeStations = ArrayList<BikeStation>()
+    var bikeStations = ArrayList<Contract.BikeStation>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -33,18 +27,23 @@ class BikeStationsFragment : Fragment() {
             layoutManager = LinearLayoutManager(activity)
 
             // todo: extract strings to strings.xml
-
-
-            var contractNames = listOf("dublin", "cergy-pontoise", "creteil")
-            var apiKey = "d698bd9f3088ba5f431482fafabc3abd5199ead4"
-            var urls = mutableListOf<String>()
-            for (contractName in contractNames) {
-                // example of dublin bike stations: https://api.jcdecaux.com/vls/v1/stations?contract=dublin&apiKey=d698bd9f3088ba5f431482fafabc3abd5199ead4
-                var url = "https://api.jcdecaux.com/vls/v1/stations?contract=" + contractName + "&apiKey=" + apiKey
-                urls.add(url)
-            }
+            var contractDublin = listOf("dublin")
+            var contractParis = listOf("cergy-pontoise", "creteil")
+            var allContractNames = contractDublin + contractParis
+            var urls = getAllUrls(allContractNames)
             fetchAllJson(urls)
         }
+    }
+
+    private fun getAllUrls(contractNames: List<String>): MutableList<String> {
+        var apiKey = "d698bd9f3088ba5f431482fafabc3abd5199ead4"
+        var urls = mutableListOf<String>()
+        for (contractName in contractNames) {
+            // example of dublin bike stations: https://api.jcdecaux.com/vls/v1/stations?contract=dublin&apiKey=d698bd9f3088ba5f431482fafabc3abd5199ead4
+            var url = "https://api.jcdecaux.com/vls/v1/stations?contract=" + contractName + "&apiKey=" + apiKey
+            urls.add(url)
+        }
+        return urls
     }
 
     // todo: separate bike stations into cities (dublin has a single url, paris has two urls)
@@ -63,7 +62,7 @@ class BikeStationsFragment : Fragment() {
                 override fun onResponse(call: Call, response: Response) {
                     val body = response?.body?.string()
                     val gson = GsonBuilder().create()
-                    val type = object : TypeToken<ArrayList<BikeStation>>() {}.type
+                    val type = object : TypeToken<ArrayList<Contract.BikeStation>>() {}.type
                     bikeStations.addAll(gson.fromJson(body, type))
 
                     if (url == urls[urls.lastIndex]) {
@@ -79,7 +78,6 @@ class BikeStationsFragment : Fragment() {
             })
         }
     }
-
 
     // to run on main thread
     private fun runOnUiThread(task: Runnable) {
