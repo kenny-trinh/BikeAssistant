@@ -59,7 +59,8 @@ class MapsFragment : Fragment(), OnMapReadyCallback {
     // todo: Map of all dublin station markers
     override fun onMapReady(googleMap: GoogleMap) {
         map = googleMap
-        val firstBikeStation = LatLng(bikeStations[0].position.lat, bikeStations[0].position.lng)
+        val firstBikeStation = LatLng(53.349562, -6.278198)
+        //val firstBikeStation = LatLng(bikeStations[0].position.lat, bikeStations[0].position.lng)
         val zoomLevel = 15f
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(firstBikeStation, zoomLevel))
         for (bikeStation in bikeStations) {

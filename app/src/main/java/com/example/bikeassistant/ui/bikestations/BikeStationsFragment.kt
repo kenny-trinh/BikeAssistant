@@ -27,11 +27,21 @@ class BikeStationsFragment : Fragment() {
             layoutManager = LinearLayoutManager(activity)
 
             // todo: extract strings to strings.xml
-            var contractDublin = listOf("dublin")
-            var contractParis = listOf("cergy-pontoise", "creteil")
-            var allContractNames = contractDublin + contractParis
-            var urls = getAllUrls(allContractNames)
-            fetchAllJson(urls)
+
+            button_dublin.setOnClickListener {
+                var urls = getAllUrls(listOf("dublin"))
+                fetchAllJson(urls)
+            }
+
+            button_paris.setOnClickListener {
+                var urls = getAllUrls(listOf("cergy-pontoise", "creteil"))
+                fetchAllJson(urls)
+            }
+            //var contractDublin = listOf("dublin")
+            //var contractParis = listOf("cergy-pontoise", "creteil")
+            //var allContractNames = contractDublin + contractParis
+            //var urls = getAllUrls(allContractNames)
+
         }
     }
 
@@ -48,6 +58,9 @@ class BikeStationsFragment : Fragment() {
 
     // todo: separate bike stations into cities (dublin has a single url, paris has two urls)
     // todo: refactor nested lines function
+
+
+
     private fun fetchAllJson(urls: List<String>) {
         Timber.i("Fetching json data from API")
         for (url in urls) {
@@ -63,6 +76,7 @@ class BikeStationsFragment : Fragment() {
                     val body = response?.body?.string()
                     val gson = GsonBuilder().create()
                     val type = object : TypeToken<ArrayList<Contract.BikeStation>>() {}.type
+                    bikeStations = ArrayList()
                     bikeStations.addAll(gson.fromJson(body, type))
 
                     if (url == urls[urls.lastIndex]) {
