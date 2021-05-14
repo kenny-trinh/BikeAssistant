@@ -27,6 +27,8 @@ class BikeStationsFragment : Fragment() {
             layoutManager = LinearLayoutManager(activity)
 
             // todo: extract strings to strings.xml
+            var urls = getAllUrls(listOf("dublin"))
+            fetchAllJson(urls)
 
             button_dublin.setOnClickListener {
                 var urls = getAllUrls(listOf("dublin"))
