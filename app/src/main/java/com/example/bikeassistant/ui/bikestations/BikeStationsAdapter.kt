@@ -42,6 +42,8 @@ class BikeStationsViewHolder(val view: View, var bikeStation: Contract.BikeStati
         val BIKESTATION_AVAILABLE_BIKE_STANDS_KEY = "BIKESTATION_AVAILABLE_BIKE_STANDS"
         val BIKESTATION_AVAILABLE_BIKES_KEY = "BIKESTATION_AVAILABLE_BIKES"
         val BIKESTATION_STATUS_KEY = "BIKESTATION_STATUS"
+        val BIKESTATION_POSITION_LAT_KEY = "BIKESTATION_POSITION_LAT"
+        val BIKESTATION_POSITION_LNG_KEY = "BIKESTATION_POSITION_LNG"
     }
 
     init {
@@ -54,6 +56,8 @@ class BikeStationsViewHolder(val view: View, var bikeStation: Contract.BikeStati
             intent.putExtra(BIKESTATION_AVAILABLE_BIKE_STANDS_KEY, bikeStation?.availableBikeStands.toString())
             intent.putExtra(BIKESTATION_AVAILABLE_BIKES_KEY, bikeStation?.availableBikes.toString())
             intent.putExtra(BIKESTATION_STATUS_KEY, bikeStation?.status)
+            intent.putExtra(BIKESTATION_POSITION_LAT_KEY, bikeStation?.position?.lat)
+            intent.putExtra(BIKESTATION_POSITION_LNG_KEY, bikeStation?.position?.lng)
             view.context.startActivity(intent)
         }
     }

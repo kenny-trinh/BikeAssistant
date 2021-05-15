@@ -12,7 +12,7 @@
         android:title="Bike Stations" />
     <item
         android:id="@+id/mapsFragment"
-        android:title="Map" />
+        android:title="Maps" />
     <item
         android:id="@+id/weatherFragment"
         android:title="Weather" />

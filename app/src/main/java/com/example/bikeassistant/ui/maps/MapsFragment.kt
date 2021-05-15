@@ -3,10 +3,10 @@ package com.example.bikeassistant.ui.maps
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
+import androidx.navigation.ui.NavigationUI
 import com.example.bikeassistant.R
 import com.example.bikeassistant.data.Contract
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -38,6 +38,7 @@ class MapsFragment : Fragment(), OnMapReadyCallback {
             savedInstanceState: Bundle?,
     ): View? {
         Timber.i("Timber: MapsFragment - onCreateView called")
+        setHasOptionsMenu(true)
         getInitialMap()
         return inflater.inflate(R.layout.fragment_maps, container, false)
     }
@@ -59,6 +60,16 @@ class MapsFragment : Fragment(), OnMapReadyCallback {
             zoomLevel = 10f
             getAllMarkers(getAllUrls(allContractNames))
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.navdrawer_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return NavigationUI.onNavDestinationSelected(item, requireView().findNavController())
+                || super.onOptionsItemSelected(item)
     }
 
     private fun getInitialMap() {
@@ -101,11 +112,11 @@ class MapsFragment : Fragment(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
         Timber.i("Timber: MapsFragment - onMapReady called")
         map = googleMap
-        map.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoomLevel))
+                map.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoomLevel))
         for (bikeStation in bikeStations) {
             map.addMarker(MarkerOptions()
-                    .position(LatLng(bikeStation.position.lat, bikeStation.position.lng))
-                    .title(bikeStation.name))
+                .position(LatLng(bikeStation.position.lat, bikeStation.position.lng))
+                .title(bikeStation.name))
         }
     }
 

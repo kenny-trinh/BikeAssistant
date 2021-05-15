@@ -3,10 +3,10 @@ package com.example.bikeassistant.ui.bikestations
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
+import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.bikeassistant.R
 import com.example.bikeassistant.data.Contract
@@ -40,6 +40,18 @@ class BikeStationsFragment : Fragment() {
             }
         }
     }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.navdrawer_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return NavigationUI.onNavDestinationSelected(item, requireView().findNavController())
+                || super.onOptionsItemSelected(item)
+    }
+
+
 
     private fun getAllUrls(contractNames: List<String>): MutableList<String> {
         Timber.i("Getting api urls")
@@ -95,7 +107,7 @@ class BikeStationsFragment : Fragment() {
             savedInstanceState: Bundle?,
     ): View? {
         // Inflate the layout for this fragment
-
+        setHasOptionsMenu(true)
         return inflater.inflate(R.layout.fragment_bike_stations, container, false)
     }
 

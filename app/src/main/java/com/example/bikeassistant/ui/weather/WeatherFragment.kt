@@ -2,13 +2,13 @@ package com.example.bikeassistant.ui.weather
 
 import android.os.AsyncTask
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.ProgressBar
 import android.widget.RelativeLayout
 import android.widget.TextView
+import androidx.navigation.findNavController
+import androidx.navigation.ui.NavigationUI
 import com.example.bikeassistant.R
 import kotlinx.android.synthetic.main.fragment_weather.*
 import org.json.JSONObject
@@ -53,7 +53,18 @@ class WeatherFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         Timber.i("Timber: WeatherFragment - onCreateView called")
+        setHasOptionsMenu(true)
         return inflater.inflate(R.layout.fragment_weather, container, false)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.navdrawer_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return NavigationUI.onNavDestinationSelected(item, requireView().findNavController())
+                || super.onOptionsItemSelected(item)
     }
 
 
