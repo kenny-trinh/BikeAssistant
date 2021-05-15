@@ -22,6 +22,7 @@ class UserRegistrationFragment : Fragment() {
 
         var profiles: ArrayList<Profile> = arrayListOf()
 
+
         button_register.setOnClickListener { view ->
             var firstName = editText_first_name.text.toString()
             var lastName = editText_last_name.text.toString()
@@ -33,6 +34,7 @@ class UserRegistrationFragment : Fragment() {
             val json = gson.toJson(profiles)
             editor.putString("profiles", json)
             editor.apply()
+
         }
     }
 

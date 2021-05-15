@@ -25,7 +25,6 @@ import java.io.IOException
 class MapsFragment : Fragment(), OnMapReadyCallback {
 
     private lateinit var map: GoogleMap
-    // todo: extract strings to strings.xml
     var contractDublin = listOf("dublin")
     var contractParis = listOf("cergy-pontoise", "creteil")
     var allContractNames = contractDublin + contractParis
@@ -91,10 +90,8 @@ class MapsFragment : Fragment(), OnMapReadyCallback {
         }
     }
 
-    // todo: Map of all dublin station markers
     override fun onMapReady(googleMap: GoogleMap) {
         map = googleMap
-
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoomLevel))
         for (bikeStation in bikeStations) {
             map.addMarker(MarkerOptions()
@@ -108,7 +105,7 @@ class MapsFragment : Fragment(), OnMapReadyCallback {
         var urls = mutableListOf<String>()
         for (contractName in contractNames) {
             // example of dublin bike stations: https://api.jcdecaux.com/vls/v1/stations?contract=dublin&apiKey=d698bd9f3088ba5f431482fafabc3abd5199ead4
-            var url = "https://api.jcdecaux.com/vls/v1/stations?contract=" + contractName + "&apiKey=" + apiKey
+            var url = "https://api.jcdecaux.com/vls/v1/stations?contract=$contractName&apiKey=$apiKey"
             urls.add(url)
         }
         return urls
