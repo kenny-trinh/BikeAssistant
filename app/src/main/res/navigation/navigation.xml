@@ -8,36 +8,36 @@
     <fragment
         android:id="@+id/userRegistrationFragment"
         android:name="com.example.bikeassistant.ui.profiles.UserRegistrationFragment"
-        android:label="fragment_user_registration"
+        android:label="Register"
         tools:layout="@layout/fragment_user_registration" />
     <fragment
         android:id="@+id/bikeStationsFragment"
         android:name="com.example.bikeassistant.ui.bikestations.BikeStationsFragment"
-        android:label="fragment_bike_stations"
+        android:label="Bike Stations"
         tools:layout="@layout/fragment_bike_stations" />
     <fragment
         android:id="@+id/profilesFragment"
         android:name="com.example.bikeassistant.ui.profiles.ProfilesFragment"
-        android:label="fragment_profiles"
+        android:label="Profiles"
         tools:layout="@layout/fragment_profiles" />
     <fragment
         android:id="@+id/bikeStationDetailFragment"
         android:name="com.example.bikeassistant.ui.bikestations.BikeStationDetailFragment"
-        android:label="fragment_bike_station_detail"
+        android:label="Bike Station Detail"
         tools:layout="@layout/fragment_bike_station_detail" />
     <fragment
         android:id="@+id/profileDetailFragment"
         android:name="com.example.bikeassistant.ui.profiles.ProfileDetailFragment"
-        android:label="fragment_profile_detail"
+        android:label="Profile Detail"
         tools:layout="@layout/fragment_profile_detail" />
     <fragment
         android:id="@+id/weatherFragment"
         android:name="com.example.bikeassistant.ui.weather.WeatherFragment"
-        android:label="fragment_weather"
+        android:label="Weather"
         tools:layout="@layout/fragment_weather" />
     <fragment
         android:id="@+id/mapsFragment"
         android:name="com.example.bikeassistant.ui.maps.MapsFragment"
-        android:label="fragment_maps"
+        android:label="Maps"
         tools:layout="@layout/fragment_maps" />
 </navigation>

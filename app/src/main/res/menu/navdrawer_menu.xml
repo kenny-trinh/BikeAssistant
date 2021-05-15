@@ -13,5 +13,7 @@
     <item
         android:id="@+id/mapsFragment"
         android:title="Map" />
-    <item android:title="Weather" />
+    <item
+        android:id="@+id/weatherFragment"
+        android:title="Weather" />
 </menu>
