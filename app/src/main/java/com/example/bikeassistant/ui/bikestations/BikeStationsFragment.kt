@@ -26,7 +26,6 @@ class BikeStationsFragment : Fragment() {
         recyclerView_bike_stations.apply {
             layoutManager = LinearLayoutManager(activity)
 
-            // todo: extract strings to strings.xml
             var urls = getAllUrls(listOf("dublin"))
             fetchAllJson(urls)
 
@@ -39,15 +38,11 @@ class BikeStationsFragment : Fragment() {
                 var urls = getAllUrls(listOf("cergy-pontoise", "creteil"))
                 fetchAllJson(urls)
             }
-            //var contractDublin = listOf("dublin")
-            //var contractParis = listOf("cergy-pontoise", "creteil")
-            //var allContractNames = contractDublin + contractParis
-            //var urls = getAllUrls(allContractNames)
-
         }
     }
 
     private fun getAllUrls(contractNames: List<String>): MutableList<String> {
+        Timber.i("Getting api urls")
         var apiKey = "d698bd9f3088ba5f431482fafabc3abd5199ead4"
         var urls = mutableListOf<String>()
         for (contractName in contractNames) {
@@ -57,11 +52,6 @@ class BikeStationsFragment : Fragment() {
         }
         return urls
     }
-
-    // todo: separate bike stations into cities (dublin has a single url, paris has two urls)
-    // todo: refactor nested lines function
-
-
 
     private fun fetchAllJson(urls: List<String>) {
         Timber.i("Fetching json data from API")

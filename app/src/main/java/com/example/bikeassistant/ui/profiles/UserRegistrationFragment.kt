@@ -2,27 +2,23 @@ package com.example.bikeassistant.ui.profiles
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.example.bikeassistant.R
-import com.example.bikeassistant.data.Contract
 import com.example.bikeassistant.data.Profile
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_user_registration.*
-import android.preference.PreferenceManager
+import timber.log.Timber
 
 
 class UserRegistrationFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        var profiles: ArrayList<Profile> = arrayListOf()
-
-
+        Timber.i("Timber: UserRegistrationFragment - onViewCreated called")
+        var profiles: ArrayList<Profile> = ArrayList()
         button_register.setOnClickListener { view ->
             var firstName = editText_first_name.text.toString()
             var lastName = editText_last_name.text.toString()
@@ -34,11 +30,11 @@ class UserRegistrationFragment : Fragment() {
             val json = gson.toJson(profiles)
             editor.putString("profiles", json)
             editor.apply()
-
         }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        Timber.i("Timber: UserRegistrationFragment - onCreateView called")
         return inflater.inflate(R.layout.fragment_user_registration, container, false)
 
     }

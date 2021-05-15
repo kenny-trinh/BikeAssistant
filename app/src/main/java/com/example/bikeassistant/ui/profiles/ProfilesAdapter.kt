@@ -1,4 +1,4 @@
-package com.example.bikeassistant.ui
+package com.example.bikeassistant.ui.profiles
 
 import android.view.LayoutInflater
 import android.view.View

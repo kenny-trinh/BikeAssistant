@@ -9,6 +9,8 @@
         android:id="@+id/textView_full_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:text="Full name"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"

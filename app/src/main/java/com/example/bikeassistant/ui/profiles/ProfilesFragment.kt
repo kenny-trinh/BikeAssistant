@@ -9,17 +9,18 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.bikeassistant.R
 import com.example.bikeassistant.data.Profile
-import com.example.bikeassistant.ui.ProfilesAdapter
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import kotlinx.android.synthetic.main.fragment_profiles.*
+import timber.log.Timber
 
 
 class ProfilesFragment : Fragment() {
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        Timber.i("Timber: ProfilesFragment - onViewCreated called")
 
         val gson = Gson()
         val prefs = requireContext().getSharedPreferences("pref", Context.MODE_PRIVATE)
@@ -44,6 +45,7 @@ class ProfilesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        Timber.i("Timber: ProfilesFragment - onCreateView called")
         return inflater.inflate(R.layout.fragment_profiles, container, false)
     }
 

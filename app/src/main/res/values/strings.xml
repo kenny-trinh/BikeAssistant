@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Bike Assistant</string>
+    <string name="title_activity_bike_station_detail">BikeStationDetailActivity</string>
 </resources>

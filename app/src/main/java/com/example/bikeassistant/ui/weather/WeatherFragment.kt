@@ -10,9 +10,9 @@ import android.widget.ProgressBar
 import android.widget.RelativeLayout
 import android.widget.TextView
 import com.example.bikeassistant.R
-import kotlinx.android.synthetic.main.fragment_bike_stations.*
 import kotlinx.android.synthetic.main.fragment_weather.*
 import org.json.JSONObject
+import timber.log.Timber
 import java.net.URL
 import java.text.SimpleDateFormat
 import java.util.*
@@ -23,24 +23,27 @@ class WeatherFragment : Fragment() {
     var city: String = "dublin,ie"
     val apiKey: String = "16a9015765f4b8bf30ecf4f0fd05b886"
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Timber.i("Timber: WeatherFragment - onCreate called")
         city = "dublin,ie"
-        weatherTask().execute()
+        WeatherTask().execute()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        Timber.i("Timber: WeatherFragment - onViewCreated called")
 
         button_weather_dublin.setOnClickListener {
+            Timber.i("Timber: WeatherFragment - Dublin weather button clicked")
             city = "dublin,ie"
-            weatherTask().execute()
+            WeatherTask().execute()
         }
 
         button_weather_paris.setOnClickListener {
+            Timber.i("Timber: WeatherFragment - Paris weather button clicked")
             city = "paris,fr"
-            weatherTask().execute()
+            WeatherTask().execute()
         }
     }
 
@@ -49,14 +52,16 @@ class WeatherFragment : Fragment() {
             savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        Timber.i("Timber: WeatherFragment - onCreateView called")
         return inflater.inflate(R.layout.fragment_weather, container, false)
     }
 
 
-    inner class weatherTask() : AsyncTask<String, Void, String>() {
+    inner class WeatherTask() : AsyncTask<String, Void, String>() {
         // inner class from androdocs
         override fun onPreExecute() {
             super.onPreExecute()
+            Timber.i("Timber: WeatherTask - onPreExecute called")
             /* Showing the ProgressBar, Making the main design GONE */
             view?.findViewById<ProgressBar>(R.id.loader)?.visibility = View.VISIBLE
             view?.findViewById<RelativeLayout>(R.id.mainContainer)?.visibility = View.GONE
@@ -64,6 +69,7 @@ class WeatherFragment : Fragment() {
         }
 
         override fun doInBackground(vararg params: String?): String? {
+            Timber.i("Timber: WeatherTask - doInBackground called")
             var response:String?
             try{
                 response = URL("https://api.openweathermap.org/data/2.5/weather?q=$city&units=metric&appid=$apiKey").readText(
@@ -77,6 +83,7 @@ class WeatherFragment : Fragment() {
 
         override fun onPostExecute(result: String?) {
             super.onPostExecute(result)
+            Timber.i("Timber: WeatherTask - onPostExecute called")
             try {
                 /* Extracting JSON returns from the API */
                 val jsonObj = JSONObject(result)

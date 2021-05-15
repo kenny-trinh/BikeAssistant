@@ -37,12 +37,16 @@ class MapsFragment : Fragment(), OnMapReadyCallback {
             container: ViewGroup?,
             savedInstanceState: Bundle?,
     ): View? {
+        Timber.i("Timber: MapsFragment - onCreateView called")
         getInitialMap()
         return inflater.inflate(R.layout.fragment_maps, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        Timber.i("Timber: MapsFragment - onViewCreated called")
+
         getInitialMap()
         button_map_dublin.setOnClickListener {
             latLng = LatLng(53.3498, -6.2603)
@@ -65,21 +69,25 @@ class MapsFragment : Fragment(), OnMapReadyCallback {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Timber.i("Timber: MapsFragment - onCreate called")
         getInitialMap()
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        Timber.i("Timber: MapsFragment - onActivityCreated called")
         getInitialMap()
     }
 
     override fun onStart() {
         super.onStart()
+        Timber.i("Timber: MapsFragment - onStart called")
         getInitialMap()
     }
 
     override fun onResume() {
         super.onResume()
+        Timber.i("Timber: MapsFragment - onResume called")
         getInitialMap()
     }
 
@@ -91,6 +99,7 @@ class MapsFragment : Fragment(), OnMapReadyCallback {
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
+        Timber.i("Timber: MapsFragment - onMapReady called")
         map = googleMap
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoomLevel))
         for (bikeStation in bikeStations) {
@@ -101,6 +110,7 @@ class MapsFragment : Fragment(), OnMapReadyCallback {
     }
 
     private fun getAllUrls(contractNames: List<String>): MutableList<String> {
+        Timber.i("Timber: MapsFragment - getAllUrls called")
         var apiKey = "d698bd9f3088ba5f431482fafabc3abd5199ead4"
         var urls = mutableListOf<String>()
         for (contractName in contractNames) {
@@ -111,17 +121,15 @@ class MapsFragment : Fragment(), OnMapReadyCallback {
         return urls
     }
 
-    // todo: separate bike stations into cities (dublin has a single url, paris has two urls)
-    // todo: refactor nested lines function
     private fun getAllMarkers(urls: List<String>) {
-        Timber.i("Fetching json data from API")
+        Timber.i("Timber: MapsFragment - Fetching json data from API")
         for (url in urls) {
             var request = Request.Builder().url(url).build()
             var client = OkHttpClient()
 
             client.newCall(request).enqueue(object : Callback {
                 override fun onFailure(call: Call, e: IOException) {
-                    Timber.i("Failed to load JSON data")
+                    Timber.i("Timber: MapsFragment - Failed to load JSON data")
                 }
 
                 override fun onResponse(call: Call, response: Response) {
@@ -130,7 +138,7 @@ class MapsFragment : Fragment(), OnMapReadyCallback {
                     val type = object : TypeToken<ArrayList<Contract.BikeStation>>() {}.type
                     bikeStations = ArrayList()
                     bikeStations.addAll(gson.fromJson(body, type))
-                    Timber.i("JSON data successfully loaded")
+                    Timber.i("Timber: MapsFragment - JSON data successfully loaded")
                     getMap()
                 }
 

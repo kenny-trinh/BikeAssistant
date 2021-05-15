@@ -21,11 +21,6 @@
         android:label="Profiles"
         tools:layout="@layout/fragment_profiles" />
     <fragment
-        android:id="@+id/bikeStationDetailFragment"
-        android:name="com.example.bikeassistant.ui.bikestations.BikeStationDetailFragment"
-        android:label="Bike Station Detail"
-        tools:layout="@layout/fragment_bike_station_detail" />
-    <fragment
         android:id="@+id/profileDetailFragment"
         android:name="com.example.bikeassistant.ui.profiles.ProfileDetailFragment"
         android:label="Profile Detail"
